@@ -1,0 +1,12 @@
+{
+  "name": "services",
+  "private": true,
+  "dependencies": {
+    "elysia": "^1.3.5",
+    "@learning/connectors": "*"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.17",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "blog",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run main.ts --watch",
+    "start": "bun run main.ts",
+    "check": "tsc"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.11.97"
+  },
+  "dependencies": {
+    "mongoose": "^8.16.0"
+  }
+}
