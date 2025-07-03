@@ -51,7 +51,6 @@ import path from "path";
 
   server.addService(blogProto.Blogger.service, {
     GetBlog: (call: any, callback: any) => {
-      console.log(call);
       callback(null, {
         title: "Hello from grpc " + call.request.name,
       });
