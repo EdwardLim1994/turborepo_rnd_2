@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package blog;
+
+service Blogger{
+  rpc GetBlog(BlogRequest) returns (Blog){}
+}
+
+message BlogRequest{
+
+}
+
+message Blog{
+  string title = 1;
+}

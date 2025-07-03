@@ -9,6 +9,5 @@
       "persistent": true
     }
   },
-  "concurrency": "2",
   "ui": "tui"
 }
