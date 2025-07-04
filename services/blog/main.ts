@@ -27,6 +27,7 @@ const app = new Elysia()
 	});
 */
 
+import amqp from "amqplib";
 import grpc from "@grpc/grpc-js";
 import protoLoader from "@grpc/proto-loader";
 import path from "path";
@@ -50,7 +51,26 @@ import path from "path";
   const blogProto = grpc.loadPackageDefinition(loader).blog;
 
   server.addService(blogProto.Blogger.service, {
-    GetBlog: (call: any, callback: any) => {
+    GetBlog: async (call: any, callback: any) => {
+      const connection = await amqp.connect("amqp://admin:admin@localhost");
+      const channel = await connection.createChannel();
+
+      await channel.assertQueue("blog");
+
+      const job = {
+        id: Date.now(),
+        task: "notification",
+      };
+
+      const msg = JSON.stringify(job);
+
+      channel.sendToQueue("blog", Buffer.from(msg));
+
+      setTimeout(() => {
+        connection.close();
+        process.exit(0);
+      }, 500);
+
       callback(null, {
         title: "Hello from grpc " + call.request.name,
       });
