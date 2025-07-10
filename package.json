@@ -24,6 +24,13 @@
     "typescript": "^5"
   },
   "trustedDependencies": [
-    "protobufjs"
+    "@apollo/protobufjs",
+    "@parcel/watcher",
+    "blog_view",
+    "core-js",
+    "core-js-pure",
+    "esbuild",
+    "protobufjs",
+    "yarn"
   ]
 }

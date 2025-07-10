@@ -1,9 +1,13 @@
 {
   "name": "mfe",
-  "private": true,
   "dependencies": {
     "nuxt": "^3.17.6",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
+  },
+  "private": true,
+  "devDependencies": {
+    "graphql": "^16.11.0",
+    "nuxt-graphql-request": "^8.1.1"
   }
 }
