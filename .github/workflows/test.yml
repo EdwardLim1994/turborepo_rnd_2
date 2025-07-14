@@ -14,6 +14,12 @@ jobs:
         run: npm install -g bun
       - name: Get Bun's version
         run: bun -v
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+      - name: List out files
+        run: |
+          echo "Showing all files"
+          ls -la
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
