@@ -39,6 +39,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install Bunjs
+        run: npm install -g bun
+      - name: Get Bun's version
+        run: bun -v
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
