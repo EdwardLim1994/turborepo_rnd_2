@@ -21,6 +21,13 @@ jobs:
       - name: Publish package name
         id: publish
         run: find ./*.json -type f -execdir echo 'script-files={}'>> $GITHUB_OUTPUT ';'
+      - name: Cache Dependency
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun
+          key: bun-cache-${{ hashFiles('**/bun.lock') }}
+      - name: Install Dependencies
+        run: bun i --frozen-lockfile
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -40,5 +47,12 @@ jobs:
         run: ls -la
       - name: Get Publish Param
         run: echo "${{ needs.setup.outputs.output-file }}"
+      - name: Cache Dependency
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun
+          key: bun-cache-${{ hashFiles('**/bun.lock') }}
+      - name: Install Dependencies
+        run: bun i --frozen-lockfile
       - name: Deploy
         run: echo "Deploying......"
