@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  setup:
+  initial_setup:
     runs-on: ubuntu-latest
     outputs:
       output-file: ${{ steps.publish.outputs.script-files }}
