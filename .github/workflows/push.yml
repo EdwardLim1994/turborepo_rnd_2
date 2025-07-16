@@ -75,4 +75,4 @@ jobs:
         run: echo "Deploying......"
 
   deploy_import:
-    uses: ./.github/workflows/templates/deploy-template.yml
+    uses: ./.github/workflows/deploy-template.yml
