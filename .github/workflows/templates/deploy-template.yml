@@ -1,7 +1,7 @@
 name: Deployment Template
 on: workflow_call
 jobs:
-  deploy:
+  deploy_import:
     runs-on: ubuntu-latest
     steps:
       - name: Deployment Start
