@@ -5,5 +5,18 @@
   "private": true,
   "scripts": {
     "dev": "bun run index.ts --watch"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.13.4",
+    "@grpc/proto-loader": "^0.7.15",
+    "@learning/connectors": "*",
+    "@learning/models": "*",
+    "amqplib": "^0.10.8"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.7",
+    "@types/bun": "^1.2.17",
+    "@types/grpc-error": "^1.0.3",
+    "typescript": "^5.8.3"
   }
 }

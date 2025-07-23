@@ -5,15 +5,14 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "start": "turbo start"
   },
-  "packageManager": "bun@1.3.0",
+  "packageManager": "bun@1.2.19",
   "workspaces": [
     "apps/*",
     "mfe/*",
-    "mfe",
     "services/*",
-    "services",
     "packages/*"
   ],
   "dependencies": {
