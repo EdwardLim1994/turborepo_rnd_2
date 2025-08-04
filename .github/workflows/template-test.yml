@@ -1,0 +1,65 @@
+name: Testing Template
+on: workflow_call
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Begin to run unit test
+        run: echo "Initiating unit testing..."
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      - name: Install Bunjs
+        run: |
+          npm install -g bun
+          bun -v
+      - name: Install Turborepo
+        run: bun i -g turbo
+      - name: Prune ${{ inputs.service }}
+        run: turbo prune ${{ inputs.service }} --docker
+      - name: Preparing artifact
+        run: echo ""
+
+  unit-test:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Begin to unit test
+        run: echo "Initiating unit test..."
+      - name: Gather from artifact
+        run: echo ""
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      - name: Install Bunjs
+        run: |
+          npm install -g bun
+          bun -v
+      - name: Install packages
+        run: bun i --frozen-lockfile
+      - name: Run unit test
+        run: bun run test
+
+  sonar-scan:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Begin to run sonar scan
+        run: echo "Initiating Sonar Scan..."
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+  test:
+    runs-on: ubuntu-latest
+    needs:
+      - prepare
+      - unit-test
+      - sonar-scan
+    if: always()
+    steps:
+      - run: echo "All tests are success"

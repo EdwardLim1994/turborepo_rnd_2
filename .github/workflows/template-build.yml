@@ -1,0 +1,41 @@
+name: Building Template
+on:
+  workflow_call:
+    inputs:
+      service:
+        required: true
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Begin to run build process
+        run: echo "Initiating building process..."
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      - name: Install Bunjs
+        run: |
+          npm install -g bun
+          bun -v
+      - name: Install Turborepo
+        run: bun i -g turbo
+      - name: Prune ${{ inputs.service }}
+        run: turbo prune ${{ inputs.service }} --docker
+      - name: Package ${{ inputs.service }} output into artifact
+        run: echo ""
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Begin to run build docker process
+        run: echo "Initiating building Docker Image..."
+      - name: Retrieve artifact
+        run: echo ""
+      - name: Build Docker Image
+        run: echo ""
+      - name: Push Docker Image to DockerHub
+        run: echo ""

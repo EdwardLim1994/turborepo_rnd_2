@@ -1,0 +1,26 @@
+name: Prune Specific Service for Docker
+on:
+  workflow_call:
+    inputs:
+      service:
+        required: true
+        type: string
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Begin to prune ${{ inputs.service }}
+        run: echo "Initiating pruning ${{ inputs.service }}..."
+      - name: Setup nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      - name: Install Bunjs
+        run: |
+          npm install -g bun
+          bun -v
+      - name: Install Turborepo
+        run: bun i -g turbo
+      - name: Prune ${{ inputs.service }}
+        run: turbo prune ${{ inputs.service }} --docker

@@ -1,0 +1,13 @@
+name: On merging into feature branch
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - feature/**
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "test..."
+    #uses: "./.github/workflows/template-test.yml"
