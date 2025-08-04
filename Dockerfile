@@ -34,5 +34,7 @@ RUN chown -R microservice:bunjs /app  # 👈 Fix ownership here
 
 USER microservice
 
+EXPOSE 3000
+
 
 CMD ["bun", "run", "start"]

@@ -1,0 +1,8 @@
+name: Deploy to Production
+on: workflow_dispatch
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Begin to prepare deployment
+        run: echo "Initiate Preparation of deployment..."

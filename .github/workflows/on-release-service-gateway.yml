@@ -1,0 +1,17 @@
+name: On Pushing Gateway Service
+on:
+  push:
+    branches:
+      - "release/**"
+    paths:
+      - "services/gateway/**"
+
+jobs:
+  test:
+    uses: ./.github/workflows/template-test.yml
+
+  build:
+    needs: test
+    uses: ./.github/workflows/template-build.yml
+    with:
+      service: gateway
