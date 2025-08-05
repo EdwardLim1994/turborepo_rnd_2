@@ -7,10 +7,10 @@ jobs:
     steps:
       - name: Begin to run unit test
         run: echo "Initiating unit testing..."
-      - name: Checkout branch
-        uses: actions/checkout@v4
       - name: Setup runner
         uses: "./.github/workflows/template-setup-runner.yml"
+      - name: Checkout branch
+        uses: actions/checkout@v4
       - name: Prune ${{ inputs.service }}
         run: turbo prune ${{ inputs.service }} --docker
       - name: Preparing artifact
