@@ -7,18 +7,10 @@ jobs:
     steps:
       - name: Begin to run unit test
         run: echo "Initiating unit testing..."
+      - name: Setup runner
+        uses: "./.github/workflows/template-setup-runner.yml"
       - name: Checkout branch
         uses: actions/checkout@v4
-      - name: Setup Nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
-      - name: Install Bunjs
-        run: |
-          npm install -g bun
-          bun -v
-      - name: Install Turborepo
-        run: bun i -g turbo
       - name: Prune ${{ inputs.service }}
         run: turbo prune ${{ inputs.service }} --docker
       - name: Preparing artifact
@@ -32,14 +24,8 @@ jobs:
         run: echo "Initiating unit test..."
       - name: Gather from artifact
         run: echo ""
-      - name: Setup Nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
-      - name: Install Bunjs
-        run: |
-          npm install -g bun
-          bun -v
+      - name: Setup runner
+        uses: "./.github/workflows/template-setup-runner.yml"
       - name: Install packages
         run: bun i --frozen-lockfile
       - name: Run unit test

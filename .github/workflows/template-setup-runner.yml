@@ -1,21 +1,19 @@
-name: Prune Specific Service for Docker
+name: Setup Runner
 on:
   workflow_call:
     inputs:
-      service:
-        required: true
+      node-version:
+        required: false
         type: string
-
+        default: latest
 jobs:
-  prune:
+  setup:
     runs-on: ubuntu-latest
     steps:
-      - name: Begin to prune ${{ inputs.service }}
-        run: echo "Initiating pruning ${{ inputs.service }}..."
-      - name: Setup nodejs
+      - name: Setup Nodejs
         uses: actions/setup-node@v4
         with:
-          node-version: latest
+          node-version: ${{ inputs.node-version }}
       - name: Install Bunjs
         run: |
           npm install -g bun
@@ -24,5 +22,3 @@ jobs:
         run: |
           bun i -g turbo
           export PATH="/home/runner/.bun/bin:$PATH"
-      - name: Prune ${{ inputs.service }}
-        run: turbo prune ${{ inputs.service }} --docker

@@ -1,13 +1,18 @@
 name: On merging into feature branch
 on:
+  push:
+    branches:
+      - "features/**"
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - feature/**
+      - "features/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "test..."
-    #uses: "./.github/workflows/template-test.yml"
+      - name: "Preparing app's name"
+        run: echo "Preparing pushed app's name"
+      - name: "Preparing to run test"
+        uses: "./.github/workflows/template-test.yml"
