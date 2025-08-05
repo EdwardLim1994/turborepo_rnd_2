@@ -22,7 +22,9 @@ jobs:
           npm install -g bun
           bun -v
       - name: Install Turborepo
-        run: bun i -g turbo
+        run: |
+          bun i -g turbo
+          export PATH="/home/runner/.bun/bin:$PATH"
       - name: Prune ${{ inputs.service }}
         run: turbo prune ${{ inputs.service }} --docker
       - name: Package ${{ inputs.service }} output into artifact
