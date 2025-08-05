@@ -13,18 +13,8 @@ jobs:
         run: echo "Initiating building process..."
       - name: Checkout branch
         uses: actions/checkout@v4
-      - name: Setup Nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
-      - name: Install Bunjs
-        run: |
-          npm install -g bun
-          bun -v
-      - name: Install Turborepo
-        run: |
-          bun i -g turbo
-          export PATH="/home/runner/.bun/bin:$PATH"
+      - name: Setup runner
+        uses: "./.github/workflows/template-setup-runner.yml"
       - name: Prune ${{ inputs.service }}
         run: turbo prune ${{ inputs.service }} --docker
       - name: Package ${{ inputs.service }} output into artifact

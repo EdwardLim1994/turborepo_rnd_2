@@ -10,4 +10,9 @@ on:
 
 jobs:
   test:
-    uses: "./.github/workflows/template-test.yml"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Preparing app's name"
+        run: echo "Preparing pushed app's name"
+      - name: "Preparing to run test"
+        uses: "./.github/workflows/template-test.yml"
