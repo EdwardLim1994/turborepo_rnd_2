@@ -10,7 +10,4 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "test..."
-    #uses: "./.github/workflows/template-test.yml"
+    uses: "./.github/workflows/template-test.yml"
